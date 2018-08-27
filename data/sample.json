@@ -1,0 +1,19 @@
+{
+"data" : [
+  { "id" : "ajson1", "parent" : "#", "text" : "France" },
+  { "id" : "Paris",
+    "parent" : "ajson1",
+    "text" : "Paris",
+    "data": {"lat" : 48.864716, "lng" : 2.349014} },
+  { "id" : "Bordeaux",
+    "parent" : "ajson1",
+    "text" : "Bordeaux",
+    "data": {"lat" : 44.836151, "lng" : -0.580816} },
+  { "id" : "ajson2", "parent" : "#", "text" : "Germany" },
+  { "id" : "Bremen",
+    "parent" : "ajson2",
+    "text" : "Bremen",
+    "data": {"lat" : 53.073635, "lng" : 8.806422} },
+  { "id" : "ajson4", "parent" : "ajson2", "text" : "Stuttgart", "data": {"lat" : 48.78232, "lng" :9.17702} }
+]
+}
