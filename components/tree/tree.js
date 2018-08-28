@@ -71,6 +71,7 @@ function TreeMapController( tree_data ) {
         data ) );
     }
     var result_div = $( '#result' );
+    result_div.show();
     result_div.find( '.company-name' ).text( name );
     result_div.find( '.company-adress' ).text( adress );
     //result_div.find( '.company-url' ).text( url );
