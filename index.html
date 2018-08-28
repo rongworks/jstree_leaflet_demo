@@ -9,6 +9,7 @@
   <meta name="author" content="SitePoint">
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="assets/styles.css">
 
   <script
   			  src="https://code.jquery.com/jquery-1.12.4.js"
@@ -43,6 +44,7 @@
 <style>
   .marker-cluster{
     background-image: radial-gradient(circle at center,blue,silver);
+    border: 1px solid black;
   }
 </style>
 </head>
@@ -51,13 +53,15 @@
   <div class="container-fluid">
     <h1 class="m-3">Unsere ollen Kunden</h1>
     <div class="row">
-      <div class="col-3">
+      <div class="col-12 col-lg-4 col-md-6">
         <div id="tree"></div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-lg-8 col-md-6">
          <div id="mapid" style="height:500px"></div>
       </div>
-      <div id="result" class="col-3">
+		 </div>
+	  <div class="row mt-4">
+      <div id="result" class="col-12 col-lg-8 offset-lg-4 col-md-12">
         <div class="card">
           <div class="card-body">
             <h5 class="card-title company-name">Company-Name</h5>
@@ -65,16 +69,11 @@
             <ul class="list-group list-group-flush company-properties">
 
             </ul>
-            <a class="btn btn-secondary company-url" href='#'></a>
+            <a class="btn btn-secondary company-url" href="#"></a>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div id="result" class="offset-6 col-6">
-
-      </div>
-    </div>
+	 </div>
   </div>
 
 </body>

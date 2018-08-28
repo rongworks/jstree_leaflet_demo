@@ -119,6 +119,7 @@ function TreeComponent( controller, tree_data ) {
         id: places[ i ][ 0 ],
         text: places[ i ][ 1 ],
         parent: "#",
+        icon: 'home-icon',
         //li_attr: {
         //  'class': 'list-group-item'
         //},
