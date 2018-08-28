@@ -4,17 +4,17 @@ Just a quick demo using jsTree and Leaflet, to show some places in a tree view a
 
 ## What it does
 
-* Consists of 3 areas
+* Consists of ~~3~~ 2 areas
   * A tree view listing the places/locations
   * A map with markers
-  * A Card showing details
+  * ~~A Card showing details~~ (details are now inline)
 * Read places from a CSV file
 * Show markers for each place on the map
 * List the places in a tree view (no nesting, should be possible with minor changes)
   * Selecting a place marks (jump to marker) it on the map  
 * Show a marker for each place (generated after csv-reading)
   * Selecting a marker selects the location in the tree
-* Show details for the location on a card    
+* Show details for the location ~~on a card~~ beneath the tree node    
 
 ## How to use
 
@@ -26,4 +26,5 @@ Just a quick demo using jsTree and Leaflet, to show some places in a tree view a
 
 * Data headers (csv) are written in german, sorry
 * When editing the csv structure, you have to edit parsing in `components/tree/TreeComponent.js` to reflect changes
-  * Some headers are mandatory, i.e. id, name, lat, lng
+  * Some headers are mandatory, i.e. id, name, lat, lng (you should search for the attributes in the code, some are used _without care_)
+* There is a function `add_details` in the TreeComponent that renders the node details, you can customize the visible node-data there  
