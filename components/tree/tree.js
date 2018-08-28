@@ -27,7 +27,6 @@ function processData( allText ) {
   for ( var i = 1; i < allTextLines.length; i++ ) {
     var data = allTextLines[ i ].split( ';' );
     if ( data.length == headers.length ) {
-
       var tarr = [];
       for ( var j = 0; j < headers.length; j++ ) {
         tarr.push( data[ j ].replace( /\"/g, "" ) );
@@ -67,13 +66,15 @@ function TreeMapController( tree_data ) {
     var name = data.name;
     var adress = data.adress;
     var url = data.url;
-    if ( !name || !adress || url ) {
+    if ( !name || !adress || !url ) {
       console.log( 'Can\'t display name, adress, url for ' + JSON.stringify(
         data ) );
     }
     var result_div = $( '#result' );
     result_div.find( '.company-name' ).text( name );
     result_div.find( '.company-adress' ).text( adress );
+    //result_div.find( '.company-url' ).text( url );
+    result_div.find( '.company-url' ).prop( 'href', url );
     var result_props = result_div.find( '.company-properties' );
     result_props.empty();
     for ( key in data ) {
@@ -130,8 +131,9 @@ function TreeComponent( controller, tree_data ) {
           city: places[ i ][ 4 ],
           business: places[ i ][ 6 ],
           projects: places[ i ][ 7 ],
-          lat: places[ i ][ 8 ],
-          lng: places[ i ][ 9 ]
+          url: places[ i ][ 8 ],
+          lat: places[ i ][ 9 ],
+          lng: places[ i ][ 10 ]
         }
       };
 
@@ -146,7 +148,16 @@ function TreeComponent( controller, tree_data ) {
       'core': {
         'data': component.data
       },
-      "plugins": [ "wholerow" ]
+      "plugins": [ "wholerow", "sort" ],
+      "sort": function( a, b ) {
+        a1 = this.get_node( a );
+        b1 = this.get_node( b );
+        if ( a1.icon == b1.icon ) {
+          return ( a1.text > b1.text ) ? 1 : -1;
+        } else {
+          return ( a1.icon > b1.icon ) ? 1 : -1;
+        }
+      }
     } );
 
     // listen for events
@@ -175,11 +186,12 @@ function TreeComponent( controller, tree_data ) {
       */
       .on( 'select_node.jstree', function( e, data ) {
         var node = data.instance.get_node( data.node );
-        console.log( "selected:" + JSON.stringify( node ) );
+        //console.log( "selected:" + JSON.stringify( node ) );
         var lat = node.data.lat;
         var lng = node.data.lng;
         var name = node.text;
-        var adress = node.data.adress + ', ' + node.data.zip + ' ' + node.data
+        var adress = node.data.adress + ', ' + node.data.zip + ' ' + node
+          .data
           .city;
         if ( lat && lng ) {
           component.controller.center_map( lat, lng );
@@ -247,13 +259,7 @@ function MapComponent( controller ) {
     cluster.bindPopup( content ).openPopup();
   } );
 
-  this.select_node = function( id ) {
-    for ( var i = 0; i < markers.length; i++ ) {
-      if ( id == markers[ i ].options.external_id ) {
-        console.log( 'jay' );
-      }
-    }
-  }
+
   this.load_from_tree = function( tree_data ) {
     for ( var i = 0; i < tree_data.length; i++ ) {
       var node = tree_data[ i ];
