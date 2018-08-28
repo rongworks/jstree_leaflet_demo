@@ -24,7 +24,7 @@ Just a quick demo using jsTree and Leaflet, to show some places in a tree view a
 
 ## Comments
 
-* Data headers (csv) are written in german, sorry
+* The CSV headers and some HTML-texts are hardcoded in german, sorry
 * When editing the csv structure, you have to edit parsing in `components/tree/TreeComponent.js` to reflect changes
   * Some headers are mandatory, i.e. id, name, lat, lng (you should search for the attributes in the code, some are used _without care_)
 * There is a function `add_details` in the TreeComponent that renders the node details, you can customize the visible node-data there  
