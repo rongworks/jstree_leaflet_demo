@@ -1,5 +1,5 @@
 .home-icon{
-  background-image: url('if_home_353416.svg') !important;
+  background-image: url('home.svg') !important;
   background-size: 24px;
   background-position: 50% 50%;
 }
@@ -10,4 +10,39 @@
   padding-left: 1em;
   border-left: 2px solid silver;
   width:60%;
+}
+
+.company-details li, .company-details a {
+  vertical-align: top;
+  padding: 0.1em;
+}
+
+.company-url:before{
+  content: '';
+  background:url('globe.svg');
+  width: 24px;
+  height: 24px;
+  display:inline-block;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+}
+
+.company-address:before{
+  content: '';
+  background:url('pin.svg');
+  width: 24px;
+  height: 24px;
+  display:inline-block;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+}
+
+.company-projects:before{
+  content: '';
+  background:url('clipboard.svg');
+  width: 24px;
+  height: 24px;
+  display:inline-block;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
 }

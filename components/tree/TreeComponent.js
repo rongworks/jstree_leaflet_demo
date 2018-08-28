@@ -81,25 +81,33 @@ function TreeComponent( controller, tree_data ) {
         $( '.company-details' ).remove();
 
         var details_div = $( '<div/>', {
-          class: 'company-details speech-bubble mb-4'
+          class: 'company-details mb-4'
         } );
 
+        var listing = $( '<ul/>', {
+          class: 'list-group list-group-flush border:0'
+        } ).appendTo( details_div );
+
+        $( '<li/>', {
+          class: 'company-address small text-muted list-group-item',
+          text: adress
+        } ).appendTo( listing );
+
+        var url_element = $( '<li/>', {
+          class: 'list-group-item'
+        } ).appendTo( listing );
+
         $( '<a/>', {
-          class: 'float-right small company-url',
+          class: 'small company-url',
           text: 'Homepage',
           target: '_blank',
           href: node.data.url
-        } ).appendTo( details_div );
+        } ).appendTo( url_element );
 
-        $( '<p/>', {
-          class: 'company-adress small text-muted',
-          text: adress
-        } ).appendTo( details_div );
-
-        $( '<p/>', {
-          class: 'company-projects small',
+        $( '<li/>', {
+          class: 'company-projects small list-group-item',
           text: node.data.projects
-        } ).appendTo( details_div );
+        } ).appendTo( listing );
 
         node_element.append( details_div );
       }
