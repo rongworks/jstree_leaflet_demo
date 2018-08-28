@@ -3,3 +3,11 @@
   background-size: 24px;
   background-position: 50% 50%;
 }
+
+.company-details{
+  /* margin: auto; */
+  margin-left: 2em;
+  padding-left: 1em;
+  border-left: 2px solid silver;
+  width:60%;
+}

@@ -4,6 +4,7 @@
  */
 function TreeComponent( controller, tree_data ) {
   var component = this; // save self for inner functions
+  this.tree;
   this.data;
   this.controller = controller;
 
@@ -37,7 +38,7 @@ function TreeComponent( controller, tree_data ) {
           projects: places[ i ][ 7 ],
           url: places[ i ][ 8 ],
           lat: places[ i ][ 9 ],
-          lng: places[ i ][ 10 ]
+          lng: places[ i ][ 10 ],
         }
       };
 
@@ -48,7 +49,7 @@ function TreeComponent( controller, tree_data ) {
   // parse data and create tree
   this.create = function() {
     component.data = component.parse_places( tree_data ).data;
-    $( '#tree' ).jstree( {
+    this.tree = $( '#tree' ).jstree( {
       'core': {
         'data': component.data
       },
@@ -64,7 +65,45 @@ function TreeComponent( controller, tree_data ) {
       }
     } );
 
-    // listen for events
+
+    /*
+     * used on selection, adds a details-div to the tree node
+     * Use this to customize node details
+     */
+    this.add_details = function( node ) {
+
+        var node_element = this.tree.jstree( true ).get_node( node, true );
+        var adress = node.data.adress + ', ' + node.data.zip + ' ' + node
+          .data
+          .city;
+
+        // remove  old details, build an append new div
+        $( '.company-details' ).remove();
+
+        var details_div = $( '<div/>', {
+          class: 'company-details speech-bubble mb-4'
+        } );
+
+        $( '<a/>', {
+          class: 'float-right small company-url',
+          text: 'Homepage',
+          target: '_blank',
+          href: node.data.url
+        } ).appendTo( details_div );
+
+        $( '<p/>', {
+          class: 'company-adress small text-muted',
+          text: adress
+        } ).appendTo( details_div );
+
+        $( '<p/>', {
+          class: 'company-projects small',
+          text: node.data.projects
+        } ).appendTo( details_div );
+
+        node_element.append( details_div );
+      }
+      // listen for events
     $( '#tree' )
       /*
       * Note: not used here, map is static
@@ -99,9 +138,11 @@ function TreeComponent( controller, tree_data ) {
           .city;
         if ( lat && lng ) {
           component.controller.center_map( lat, lng );
-          //$( '#result' ).html( '<div>' + createPopup( node ) + '<div>' )
-          component.controller.display_result( node.data );
+          // XXX: not used anymore, uncomment to use seperate result div
+          //component.controller.display_result( node.data );
         }
+
+        component.add_details( node );
 
       } )
   }
