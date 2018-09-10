@@ -1,15 +1,16 @@
 /*
  * Main app code
  * - read CSV file
- * - build the MapController, which starts the application code (tree and map components) 
+ * - build the MapController, which starts the application code (tree and map components)
  */
 //------- GLOBAL STUFF HERE
 
 $( function() {
+  csv_file = $('#tree').data('csv');
   // load csv data and build tree+map
   $.ajax( {
     type: "GET",
-    url: "data/csv_data.txt",
+    url: csv_file,
     dataType: "text",
     success: function( data ) {
       var tree_data = processData( data );
